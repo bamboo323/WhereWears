@@ -7,6 +7,20 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  root to: "publics/homes#top"
+  get "/about" => "publics/homes#about"
+
+  namespace :publics do
+    resources :users, onle: [:index, :show, :edit, :update]
+
+    get "/customers/exit" => "customers#exit"
+    patch "/customers/out" => "customers#out"
+
+    resources :shops
+
+
+  end
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
