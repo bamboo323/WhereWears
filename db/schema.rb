@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_130842) do
     t.string "shop_name"
     t.string "shop_address"
     t.text "shop_detail"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
