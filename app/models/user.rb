@@ -4,7 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :shops, dependent: :destroy
+
   has_one_attached :profile_image
 
-  has_many :shops, dependent: :destroy
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : "no_image.jpg"
+  end
+
 end
