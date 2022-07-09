@@ -1,2 +1,48 @@
-<h1>Publics::Shops#edit</h1>
-<p>Find me in app/views/publics/shops/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col text-center mt-5">
+      <h1>ショップ情報編集</h1>
+    </div>
+  </div>
+
+  <%= form_with model: @shop, url: publics_shop_path(@shop.id), method: :patch, local: true do |f| %>
+    <div class="row">
+      <div class="col text-center mt-3">
+        <%= f.label :ショップ名 %>
+        <%= f.text_field :shop_name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center mt-3">
+        <%= f.label :ジャンル %>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: "--選択してください--" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center mt-3">
+        <%= f.label :ショップ住所 %>
+        <%= f.text_field :shop_address %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center mt-3">
+        <%= f.label :ショップ詳細 %>
+        <%= f.text_area :shop_detail %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center mt-3">
+        <%= f.label :ショップ画像 %>
+        <%= f. file_field :shop_image %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center mt-3">
+        <%= f. submit "編集完了" %>
+      </div>
+    </div>
+  <% end %>
+
+
+
+</div>

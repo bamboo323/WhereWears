@@ -6,4 +6,8 @@ class Shop < ApplicationRecord
 
   has_one_attached :shop_image
 
+  def get_shop_image
+    (shop_image.attached?) ? shop_image : "no_shop_image.jpg"
+  end
+
 end

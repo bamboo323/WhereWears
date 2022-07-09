@@ -21,7 +21,7 @@
           <td><%= user.last_name + " " + user.first_name %></td>
           <td><%= user.introduction %></td>
           <% if user != current_user %>
-          <td><%= link_to "Show", publics_user_path(user.id), class: "btn btn-secondary" %> </td>
+          <td><%= link_to "Show", publics_user_path(user.id), class: "btn btn-secondary" %></td>
           <% end %>
         </tr>
       <% end %>
