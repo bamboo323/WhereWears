@@ -7,11 +7,13 @@ class Publics::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @shops = @user.shops
   end
 
   def mypage
     @user = current_user
     @shop = Shop.new
+    @shops = @user.shops
   end
 
   def edit

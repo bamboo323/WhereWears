@@ -34,8 +34,24 @@
     </div>
   </div>
 
-
-
-
-
+  <!-- 自分が投稿したShop -->
+  <div class="row mt-3">
+    <table>
+      <thead>
+        <tr>
+          <th>Shop image</th>
+          <th>Shop address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @shops.each do |shops| %>
+        <tr>
+          <td><%= image_tag shops.get_shop_image, size: "100x100" %></td>
+          <td><%= shops.shop_address %></td>
+          <td><%= link_to "店舗情報編集", edit_publics_shop_path(shops.id), class: "btn btn-primary" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

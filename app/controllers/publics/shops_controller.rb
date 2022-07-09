@@ -14,15 +14,28 @@ class Publics::ShopsController < ApplicationController
   end
 
   def index
+    @shops = Shop.all
   end
 
   def show
+    @shop = Shop.find(params[:id])
   end
 
   def edit
+    @shop = Shop.find(params[:id])
+    if @shop.user == current_user
+    else
+      redirect_to publics_shops_path
+    end
   end
 
   def update
+    @shop = Shop.find(params[:id])
+    if @shop.update(shop_params)
+      redirect_to mypage_publics_users_path
+    else
+      render "edit"
+    end
   end
 
   def destroy
