@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  #ゲストログイン
+  devise_scope :user do
+    post "users/guest_sign_in" => "public/sessions#guest_sign_in"
+  end
+
+
   root to: "publics/homes#top"
   get "/about" => "publics/homes#about"
 
