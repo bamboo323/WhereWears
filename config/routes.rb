@@ -11,10 +11,15 @@ Rails.application.routes.draw do
   get "/about" => "publics/homes#about"
 
   namespace :publics do
-    resources :users, only: [:index, :show, :edit, :update]
-
-    get "/customers/exit" => "customers#exit"
-    patch "/customers/out" => "customers#out"
+    resources :users, only: [:index, :show, :edit, :update] do
+      #get "/users/:id" => "users#mypage"とするとshowとパスがかぶるため、上手く動かないので、collectionで囲う。
+      collection do
+       get :mypage
+      end
+    end
+    #もしかしたら上の中に入れれるかも
+    get "/users/exit" => "users#exit"
+    patch "/users/out" => "users#out"
 
     resources :shops
 

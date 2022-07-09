@@ -1,2 +1,37 @@
-<h1>Publics::Users#edit</h1>
-<p>Find me in app/views/publics/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col text-center mt-5">
+      <h1>User info</h1>
+    </div>
+  </div>
+
+  <%= form_with model: @user, url: publics_user_path(current_user.id), metthod: :patch, local:true do |f| %>
+  <div class="row">
+    <div class="col text-center mt-3">
+      <%= f. label :名前 %>
+      <%= f.text_field :last_name, placeholder: "姓" %>
+      <%= f.text_field :first_name, placeholder: "名" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center mt-3">
+      <%= f.label :自己紹介 %>
+      <%= f.text_area :introduction %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center mt-3">
+      <%= f.label :プロフィール画像 %>
+      <%= f. file_field :profile_image %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center mt-3">
+      <%= f. submit "編集完了" %>
+    </div>
+  </div>
+  <% end %>
+
+
+
+</div>
