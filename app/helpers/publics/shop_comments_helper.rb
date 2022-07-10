@@ -1,0 +1,2 @@
+module Publics::ShopCommentsHelper
+end

@@ -1,0 +1,30 @@
+
+<!-- 投稿フォーム -->
+<%= form_with model: shop_comment, url: publics_shop_shop_comments_path(shop), method: :post, local: true do |f| %>
+  <%= f.text_area :comment, placeholder: "ここにコメント", class: "w-50" %>
+  <%= f.submit "投稿する", class: "btn btn-success" %>
+<% end %>
+
+<!-- 投稿一覧 -->
+<table>
+  <tbody>
+    <% shop.shop_comments.each do |shop_comment| %>
+      <tr>
+        <td>
+          <%= link_to publics_user_path(shop_comment.user) do %>
+            <%= image_tag shop_comment.user.get_profile_image, size: "100x100" %>
+            <%= shop_comment.user.last_name + " " + shop_comment.user.first_name %>
+          <% end %>
+        </td>
+        <td>
+          <%= shop_comment.comment %>
+        </td>
+        <td>
+          <% if shop_comment.user == current_user %>
+            <%= link_to "削除する", publics_shop_shop_comment_path(shop, shop_comment), method: :delete, class: "btn btn-danger" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

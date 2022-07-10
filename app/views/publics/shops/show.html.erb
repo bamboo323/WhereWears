@@ -28,6 +28,9 @@
           <td><%= @shop.shop_detail %></td>
         </tr>
       </table>
+      <div>
+        <%= render "publics/shop_comments/index", shop: @shop, shop_comment: @shop_comment %>
+      </div>
     </div>
   </div>
 
