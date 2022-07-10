@@ -1,8 +1,8 @@
 class Shop < ApplicationRecord
 
   belongs_to :user
-
   belongs_to :genre, optional: true
+  has_many :shop_comments, dependent: :destroy
 
   has_one_attached :shop_image
 

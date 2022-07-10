@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     get "/users/exit" => "users#exit"
     patch "/users/out" => "users#out"
 
-    resources :shops
+    resources :shops do
+      resources :shop_comments, only: [:create, :destroy]
+    end
 
 
   end

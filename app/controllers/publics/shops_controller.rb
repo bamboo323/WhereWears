@@ -19,6 +19,7 @@ class Publics::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @shop_comment = ShopComment.new
   end
 
   def edit
@@ -39,6 +40,9 @@ class Publics::ShopsController < ApplicationController
   end
 
   def destroy
+    @shop = Shop.find(params[:id])
+    @shop.destroy
+    redirect_to mypage_publics_users_path
   end
 
   private
