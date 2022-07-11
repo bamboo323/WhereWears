@@ -22,8 +22,15 @@ Rails.application.routes.draw do
       collection do
        get :mypage
       end
+      
+      resource :relationships, only: [:create, :destroy]
+      #あるユーザーがフォローしている人全員を表示
+      get :followings, on: :member
+      #あるユーザーをフォローしている人全員を表示
+      get :followers, on: :member
+
     end
-    #もしかしたら上の中に入れれるかも
+    #もしかしたら上の中(collection内)に入れれるかも
     get "/users/exit" => "users#exit"
     patch "/users/out" => "users#out"
 

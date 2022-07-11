@@ -19,6 +19,14 @@
           <th>自己紹介</th>
           <td><%= @user.introduction %></td>
         </tr>
+        <tr>
+          <th>follows</th>
+          <td><%= link_to @user.followings.count, followings_publics_user_path(@user) %></td>
+        </tr>
+        <tr>
+          <th>followers</th>
+          <td><%= link_to @user.followers.count, followers_publics_user_path(@user) %></td>
+        </tr>
       </table>
     </div>
   </div>

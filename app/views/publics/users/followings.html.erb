@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center mt-5">
+      <h1>Follow Users</h1>
+      <% if @users.exists? %>
+        <%= render "index", users: @users %>
+      <% else %>
+        <h2 class="col mt-5">ユーザーがいません</h2>
+      <% end %>
+    </div>
+  </div>
+</div>
