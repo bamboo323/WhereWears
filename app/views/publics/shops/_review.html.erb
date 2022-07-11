@@ -1,0 +1,15 @@
+<!-- each文で回している部分の部分テンプレートのため、shops.idと記述することで投稿した分だけ表示する -->
+<div id="star<%= shops.id %>"></td>
+  <script>
+    $("#star<%= shops.id %>").empty();
+    $("#star<%= shops.id %>").raty({
+      size: 36,
+      starOff: "<%= asset_path("star-off.png") %>",
+      starHalf: "<%= asset_path("star-half.png") %>",
+      starOn: "<%= asset_path("star-on.png") %>",
+      half: true,
+      readOnly: true,
+      score: <%= shops.star %>,
+    });
+  </script>
+</div>

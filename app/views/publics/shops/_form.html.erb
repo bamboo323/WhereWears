@@ -19,6 +19,25 @@
     <%= f.label :ジャンル %>
     <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: "--選択してください--" %>
   </div>
+
+　<!-- レビュー機能 -->
+　<%= f.label :評価 %>
+　<!-- idを指定することで、jsに渡す -->
+  <span class="form-group" id="star"></span>
+  <script>
+    //下記記述がないと星マークが増え続ける
+    $("#star").empty();
+    $("#star").raty({
+      size: 36,
+      starOff: "<%= asset_path("star-off.png") %>",
+      starHalf: "<%= asset_path("star-half.png") %>",
+      starOn: "<%= asset_path("star-on.png") %>",
+      //ショップモデルのスターカラムに値を保存する
+      scoreName: "shop[star]",
+      half: true,
+    });
+  </script>
+
   <div class="form-group">
     <%= f.submit "投稿", class: 'btn btn-success' %>
   </div>

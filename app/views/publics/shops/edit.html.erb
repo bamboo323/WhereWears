@@ -14,12 +14,6 @@
     </div>
     <div class="row">
       <div class="col text-center mt-3">
-        <%= f.label :ジャンル %>
-        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: "--選択してください--" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col text-center mt-3">
         <%= f.label :ショップ住所 %>
         <%= f.text_field :shop_address %>
       </div>
@@ -38,11 +32,20 @@
     </div>
     <div class="row">
       <div class="col text-center mt-3">
+        <%= f.label :ジャンル %>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: "--選択してください--" %>
+      </div>
+    </div>
+     <div class="row">
+      <div class="col text-center mt-3">
+        <%= f.label :評価 %>
+        <%= render "publics/shops/review", shops: @shop %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center mt-3">
         <%= f. submit "編集完了" %>
       </div>
     </div>
   <% end %>
-
-
-
 </div>
