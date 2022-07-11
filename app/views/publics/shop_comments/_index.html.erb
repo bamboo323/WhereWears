@@ -21,7 +21,7 @@
         </td>
         <td>
           <% if shop_comment.user == current_user %>
-            <%= link_to "削除する", publics_shop_shop_comment_path(shop, shop_comment), method: :delete, class: "btn btn-danger" %>
+            <%= link_to "削除する", publics_shop_shop_comment_path(shop, shop_comment), method: :delete, data: { confirm: "本当に削除しますか?"}, class: "btn btn-danger" %>
           <% end %>
         </td>
       </tr>
