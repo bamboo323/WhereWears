@@ -20,6 +20,7 @@
           <td><%= image_tag shops.get_shop_image, size: "100x100" %></td>
           <td><%= shops.shop_name %></td>
           <td><%= shops.shop_address %></td>
+          <td><%= render "publics/shops/review", shops: shops %></td>
           <td>コメント数：<%= shops.shop_comments.count %></td>
           <td><%= link_to "Show", publics_shop_path(shops.id), class: "btn btn-secondary" %> </td>
         </tr>

@@ -40,13 +40,14 @@
         </tr>
       </thead>
       <tbody>
-        <% @shops.each do |shops| %>
+      <% @shops.each do |shops| %>
         <tr>
           <td><%= image_tag shops.get_shop_image, size: "100x100" %></td>
           <td><%= shops.shop_address %></td>
+          <td><%= render "publics/shops/review", shops: shops %></td>
           <td><%= link_to "Show", publics_shop_path(shops.id), class: "btn btn-secondary" %></td>
         </tr>
-        <% end %>
+      <% end %>
       </tbody>
     </table>
   </div>

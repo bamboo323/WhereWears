@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       collection do
        get :mypage
       end
-      
+
       resource :relationships, only: [:create, :destroy]
       #あるユーザーがフォローしている人全員を表示
       get :followings, on: :member
