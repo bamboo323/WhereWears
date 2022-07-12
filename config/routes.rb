@@ -29,7 +29,8 @@ Rails.application.routes.draw do
       #あるユーザーをフォローしている人全員を表示
       get :followers, on: :member
 
-    end
+    resources :genres, only: [:show]
+  end
     #もしかしたら上の中(collection内)に入れれるかも
     get "/users/exit" => "users#exit"
     patch "/users/out" => "users#out"
