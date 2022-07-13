@@ -1,1 +1,7 @@
-<%= @genre.shops.each do |shop| %>
+<div class="container">
+  <div class="row text-center">
+    <div class="col mt-5">
+      <%= @genre.name %>一覧
+    </div>
+    <%= render "publics/shops/index", shops: @genre.shops %>
+  </div>
