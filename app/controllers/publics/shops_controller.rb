@@ -15,6 +15,7 @@ class Publics::ShopsController < ApplicationController
 
   def index
     @shops = Shop.all
+    @genres = Genre.all
   end
 
   def show

@@ -29,13 +29,14 @@ Rails.application.routes.draw do
       #あるユーザーをフォローしている人全員を表示
       get :followers, on: :member
 
-    end
+  end
     #もしかしたら上の中(collection内)に入れれるかも
     get "/users/exit" => "users#exit"
     patch "/users/out" => "users#out"
 
     resources :shops do
       resources :shop_comments, only: [:create, :destroy]
+      resources :genres, only: [:show]
     end
 
 

@@ -5,26 +5,11 @@
     </div>
   </div>
 
-  <table class="table mt-5">
-    <thead>
-      <tr>
-        <th>image</th>
-        <th>shop name</th>
-        <th>address</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @shops.each do |shops| %>
-        <tr>
-          <td><%= image_tag shops.get_shop_image, size: "100x100" %></td>
-          <td><%= shops.shop_name %></td>
-          <td><%= shops.shop_address %></td>
-          <td><%= render "publics/shops/review", shops: shops %></td>
-          <td>コメント数：<%= shops.shop_comments.count %></td>
-          <td><%= link_to "Show", publics_shop_path(shops.id), class: "btn btn-secondary" %> </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div>ジャンル検索</div>
+    <% @genres.each do |genre| %>
+      <div>
+        <%= link_to "#{genre.name}", publics_shop_genre_path(@shops, genre) %>
+      </div>
+    <% end %>
+  <%= render "publics/shops/index", shops: @shops %>
 </div>
