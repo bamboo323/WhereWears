@@ -50,6 +50,7 @@
           <th>Shop image</th>
           <th>Shop name</th>
           <th>Genre</th>
+          <th>tag</th>
           <th>Review</th>
         </tr>
       </thead>
@@ -59,6 +60,11 @@
           <td><%= image_tag shops.get_shop_image, size: "100x100" %></td>
           <td><%= shops.shop_name %></td>
           <td><%= shops.genre.name %></td>
+          <td>
+            <% shops.tags.each do |tag| %>
+              <%= tag.tag_name %>,
+            <% end %>
+          </td>
           <td><%= render "publics/shops/review", shops: shops %></td>
           <td><%= link_to "店舗情報編集", edit_publics_shop_path(shops.id), class: "btn btn-primary" %></td>
           <td><%= link_to "投稿削除", publics_shop_path(shops.id), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>

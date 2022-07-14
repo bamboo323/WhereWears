@@ -11,5 +11,19 @@
         <%= link_to "#{genre.name}", publics_shop_genre_path(@shops, genre) %>
       </div>
     <% end %>
+
+  <div>タグ検索</div>
+    <%= form_with url: publics_shops_path, method: :get do |f| %>
+      <%= f.text_field :search %>
+      <%= f.submit "検索", :tag_name => nil %>
+    <% end %>
+
+
   <%= render "publics/shops/index", shops: @shops %>
+
+  <div class="row text-center">
+    <div class="col mt-5">
+      <%= paginate @shops %>
+    </div>
+  </div>
 </div>
