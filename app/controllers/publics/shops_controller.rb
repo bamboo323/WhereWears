@@ -7,14 +7,19 @@ class Publics::ShopsController < ApplicationController
 
   def create
     @shop = Shop.new(shop_params)
+    #送られてくるタグの値を取得。split(',')で複数のタグ付けを区切る
+    # tag_listは配列
+    tag_list = params[:shop][:tag_names].split(',')
     @shop.user_id = current_user.id
     if @shop.save!
+      #shopにタグを関連つける
+      @shop.save_tags(tag_list)
       redirect_to publics_shops_path
     end
   end
 
   def index
-    @shops = Shop.all
+    @shops = Shop.search(params[:search]).page(params[:page])
     @genres = Genre.all
   end
 
