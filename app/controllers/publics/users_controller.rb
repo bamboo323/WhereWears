@@ -37,12 +37,6 @@ class Publics::UsersController < ApplicationController
     @users = user.followers
   end
 
-  def exit
-  end
-
-  def out
-  end
-
   private
   def user_params
     params.require(:user).permit(:last_name, :first_name, :introduction, :profile_image)

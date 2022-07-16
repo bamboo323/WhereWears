@@ -28,18 +28,11 @@ Rails.application.routes.draw do
       get :followings, on: :member
       #あるユーザーをフォローしている人全員を表示
       get :followers, on: :member
-
   end
-    #もしかしたら上の中(collection内)に入れれるかも
-    get "/users/exit" => "users#exit"
-    patch "/users/out" => "users#out"
-
     resources :shops do
       resources :shop_comments, only: [:create, :destroy]
       resources :genres, only: [:show]
     end
-
-
   end
 
   # 管理者用
@@ -51,7 +44,10 @@ Rails.application.routes.draw do
   get "/admins" => "admins/homes#top"
   namespace :admins do
 
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      patch "/out" => "users#out"
+    end
+
     resources :shops, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
   end
