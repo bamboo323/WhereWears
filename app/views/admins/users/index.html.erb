@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col mt-5 text-center">
+      <h1>Users</h1>
+    </div>
+  </div>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.last_name + " " + user.first_name, admins_user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td>
+            <% if user.is_deleted == false %>
+              <p class="text-success">有効</p>
+            <% else %>
+              <p class="text-danger">退会</p>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

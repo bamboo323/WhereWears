@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <h2>ログイン</h2>
+    </div>
+  </div>
+
+  <%= form_with model: @user, url: user_session_path do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+
+    <div class="row mt-3">
+      <div class="col">
+        <%= f.label :メールアドレス %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@example.com", :size=>"40" %>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col">
+        <%= f.label :パスワード %>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+    </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field mt-2">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+    <div class="actions mt-3">
+      <%= f.submit "ログイン" %>
+    </div>
+  <% end %>
+
+  <div class="row mt-4">
+    <div class="col">
+      <h3>新規登録がお済みでない方</h3>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <%= render "public/shared/links" %>から新規登録を行なってください
+    </div>
+  </div>
+</div>
