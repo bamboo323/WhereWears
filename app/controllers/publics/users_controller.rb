@@ -1,5 +1,5 @@
 class Publics::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def index
     @users = User.all.page(params[:page])

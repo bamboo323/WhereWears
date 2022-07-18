@@ -1,2 +1,82 @@
-<h1>Admins::Shops#show</h1>
-<p>Find me in app/views/admins/shops/show.html.erb</p>
+<div class="container">
+  <div class="row text-center">
+    <div class="col mt-5">
+      <h1>Shop info</h1>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <%= image_tag @shop.get_shop_image, size: "300x300" %>
+    </div>
+    <div class="col">
+      <table>
+        <tr>
+          <th>Shop name</th>
+          <td><%= @shop.shop_name %></td>
+        </tr>
+        <tr>
+          <th>Shop address</th>
+          <td><%= @shop.shop_address %></td>
+        </tr>
+        <tr>
+          <th>Genre</th>
+          <td><%= @shop.genre.name %></td>
+        </tr>
+        <tr>
+          <th>Tag</th>
+          <td>
+            <% @shop.tags.each do |tag| %>
+              <%= tag.tag_name %>,
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>Shop detail</th>
+          <td><%= @shop.shop_detail %></td>
+        </tr>
+        <tr>
+          <th>Review</th>
+          <td>
+            <div id="star<%= @shop.id %>"></div>
+          </td>
+        </tr>
+      </table>
+      <script>
+        $("#star<%= @shop.id %>").empty();
+        $("#star<%= @shop.id %>").raty({
+          size: 36,
+          starOff: "<%= asset_path("star-off.png") %>",
+          starHalf: "<%= asset_path("star-half.png") %>",
+          starOn: "<%= asset_path("star-on.png") %>",
+          half: true,
+          readOnly: true,
+          score: <%= @shop.star %>,
+        });
+      </script>
+      <div><%= link_to "ショップ情報編集", edit_admins_shop_path(@shop), class: "btn btn-success" %></div>
+      <table>
+       <tbody>
+　　　   <tr>
+　　　     <td>Comment一覧</td>
+　　　   </tr>
+           <% @shop.shop_comments.each do |shop_comment| %>
+             <tr>
+               <td>
+                 <%= link_to publics_user_path(shop_comment.user) do %>
+                   <%= image_tag shop_comment.user.get_profile_image, size: "100x100" %>
+                   <%= shop_comment.user.last_name + " " + shop_comment.user.first_name %>
+                 <% end %>
+                </td>
+                <td>
+                  <%= shop_comment.comment %>
+                </td>
+                <td>
+                  <%= link_to "削除する", admins_shop_shop_comment_path(@shop, shop_comment), method: :delete, data: { confirm: "不適切なコメントとして削除しますか?"}, class: "btn btn-danger" %>
+                </td>
+             </tr>
+           <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
