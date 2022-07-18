@@ -15,6 +15,7 @@ class Admins::ShopsController < ApplicationController
   def update
    @shop = Shop.find(params[:id])
     if @shop.update(shop_params)
+      #byebug
       redirect_to admins_shop_path(@shop)
     else
       render "edit"
@@ -23,7 +24,7 @@ class Admins::ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop).permit(:shop_name, :shop_address, :shop_detail, :shop_image, :genre_id, :star)
+    params.require(:shop).permit(:shop_name, :shop_address, :shop_detail, :shop_image, :genre_id, :star, :status)
   end
 
 end

@@ -6,6 +6,7 @@ class CreateShops < ActiveRecord::Migration[6.1]
       t.string :shop_address
       t.text :shop_detail
       t.integer :user_id
+      t.integer :status, null: false, default: 1
 
       t.timestamps
     end

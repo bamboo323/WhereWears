@@ -8,6 +8,11 @@ class Shop < ApplicationRecord
 
   has_one_attached :shop_image
 
+  enum status: {
+    非表示: 0,
+    表示: 1,
+  }
+
   def get_shop_image
     (shop_image.attached?) ? shop_image : "no_shop_image.jpg"
   end

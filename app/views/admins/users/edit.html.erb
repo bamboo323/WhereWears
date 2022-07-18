@@ -5,8 +5,8 @@
     </div>
   </div>
 
+<%= form_with model: @user, url: admins_user_path(@user), method: :patch do |f| %>
   <table class="row table mt-3">
-    <%= form_with model: @user, url: admins_user_path, method: :patch do |f| %>
     <tr>
       <th>氏名</th>
       <td>

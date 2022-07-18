@@ -30,6 +30,7 @@
       <tr>
         <th><%= f.label :評価 %></th>
         <td>
+          <%= f.select :status, Shop.statuses.keys %>
           <div id="star<%= @shop.id %>"></div>
         </td>
       </tr>
@@ -42,7 +43,6 @@
         starHalf: "<%= asset_path("star-half.png") %>",
         starOn: "<%= asset_path("star-on.png") %>",
         half: true,
-        //readOnly: true,
         score: <%= @shop.star %>,
         scoreName: 'shop[star]',
       });

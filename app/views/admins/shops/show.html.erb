@@ -42,6 +42,7 @@
         </tr>
       </table>
       <script>
+      <% if @shop.status == "表示" %>
         $("#star<%= @shop.id %>").empty();
         $("#star<%= @shop.id %>").raty({
           size: 36,
@@ -52,6 +53,9 @@
           readOnly: true,
           score: <%= @shop.star %>,
         });
+      <% else %>
+         $("#star<%= @shop.id %>").html("管理者が非表示にしました");
+      <% end %>
       </script>
       <div><%= link_to "ショップ情報編集", edit_admins_shop_path(@shop), class: "btn btn-success" %></div>
       <table>
