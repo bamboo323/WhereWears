@@ -79,9 +79,10 @@ ActiveRecord::Schema.define(version: 2022_07_13_064711) do
     t.string "shop_address"
     t.text "shop_detail"
     t.integer "user_id"
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "star"
+    t.float "star"
   end
 
   create_table "tag_relationships", force: :cascade do |t|
