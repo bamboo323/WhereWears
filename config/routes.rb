@@ -48,7 +48,9 @@ Rails.application.routes.draw do
       patch "/out" => "users#out"
     end
 
-    resources :shops, only: [:index, :show, :edit, :update]
+    resources :shops, only: [:index, :show, :edit, :update] do
+      resources :shop_comments, only: [:destroy]
+    end
     resources :genres, only: [:index, :edit, :create, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

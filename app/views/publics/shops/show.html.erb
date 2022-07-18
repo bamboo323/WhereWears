@@ -16,12 +16,20 @@
           <td><%= @shop.shop_name %></td>
         </tr>
         <tr>
+          <th>Shop address</th>
+          <td><%= @shop.shop_address %></td>
+        </tr>
+        <tr>
           <th>Genre</th>
           <td><%= @shop.genre.name %></td>
         </tr>
         <tr>
-          <th>Shop address</th>
-          <td><%= @shop.shop_address %></td>
+          <th>Tag</th>
+          <td>
+            <% @shop.tags.each do |tag| %>
+              <%= tag.tag_name %>,
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th>Shop detail</th>

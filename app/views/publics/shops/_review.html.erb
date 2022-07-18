@@ -1,5 +1,5 @@
 <!-- each文で回している部分の部分テンプレートのため、shops.idと記述することで投稿した分だけ表示する -->
-<div id="star<%= shops.id %>"></td>
+<div id="star<%= shops.id %>"></div>
   <script>
     $("#star<%= shops.id %>").empty();
     $("#star<%= shops.id %>").raty({
@@ -10,6 +10,6 @@
       half: true,
       readOnly: true,
       score: <%= shops.star %>,
+      scoreName: 'shop[star]',
     });
   </script>
-</div>
