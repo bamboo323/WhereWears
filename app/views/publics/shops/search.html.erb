@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col mt-5">
+      <% if @shops.present? %>
+        <h1><%= @keyword + " " + @genre.name %>一覧</h1>
+        <%= render "publics/shops/index", shops: @shops %>
+      <% else %>
+        <h2 class="text-center mt-5 mb-5">
+          <%= @keyword + " " + @genre.name %>の投稿はありません。<br>
+          検索方法を変えて試してください。
+        </h2>
+      <% end %>
+    </div>
+  </div>
+</div>
