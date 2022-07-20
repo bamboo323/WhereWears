@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update] do
       #get "/users/:id" => "users#mypage"とするとshowとパスがかぶるため、上手く動かないので、collectionで囲う。
       collection do
-       get :mypage
+        get :mypage
       end
 
       resource :relationships, only: [:create, :destroy]
@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     resources :shops do
       resources :shop_comments, only: [:create, :destroy]
       resources :genres, only: [:show]
+      collection do
+        get :search
+      end
     end
   end
 

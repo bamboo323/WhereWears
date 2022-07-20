@@ -1,7 +1,46 @@
+<% if @shop.errors.any? %>
+  <%= @shop.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @shop.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col text-center mt-5">
       <h1>Mypage</h1>
+    </div>
+  </div>
+
+<!-- User詳細 -->
+  <div class="row mt-5">
+    <div class="col-md-5 text-center">
+      <%= image_tag @user.get_profile_image, size: "250x250" %>
+    </div>
+    <div class="col-md-7">
+      <table class="table">
+        <tr>
+          <th>名前</th>
+          <td><%= @user.last_name + " " + @user.first_name %></td>
+        </tr>
+        <tr>
+          <th>自己紹介</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <th>follows</th>
+          <td><%= link_to @user.followings.count, followings_publics_user_path(@user) %></td>
+        </tr>
+        <tr>
+          <th>followers</th>
+          <td><%= link_to @user.followers.count, followers_publics_user_path(@user) %></td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <%= link_to "ユーザー情報編集", edit_publics_user_path(@user), class: "btn btn-primary btn-block" %>
+      </div>
     </div>
   </div>
 
@@ -10,6 +49,7 @@
     <%= render "publics/shops/form", shop: @shop %>
 
 <!-- 自分が投稿したShop -->
+  <% if @shops.present? %>
     <div class="col-md-8 mt-3">
       <h3 class="text-center">投稿一覧</h3>
       <table class="table mt-3">
@@ -33,45 +73,17 @@
               <% end %>
             </td>
             <td><%= render "publics/shops/review", shops: shops %></td>
-            <td><%= link_to "店舗情報編集", edit_publics_shop_path(shops.id), class: "btn btn-primary" %></td>
+            <td><%= link_to "編集", edit_publics_shop_path(shops.id), class: "btn btn-primary" %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-  </div>
-
-<!-- User詳細 -->
-  <div class="row">
-    <div class="col-md-4 mt-3">
-      <h3 class="text-center">ユーザー情報</h3>
-      <div class="col-md">
-        <table class="table">
-          <tr>
-            <th>ユーザー画像</th>
-            <td><%= image_tag @user.get_profile_image, size: "100x100" %></td>
-          </tr>
-          <tr>
-            <th>名前</th>
-            <td><%= @user.last_name + " " + @user.first_name %></td>
-          </tr>
-          <tr>
-            <th>自己紹介</th>
-            <td><%= @user.introduction %></td>
-          </tr>
-          <tr>
-            <th>follows</th>
-            <td><%= link_to @user.followings.count, followings_publics_user_path(@user) %></td>
-          </tr>
-          <tr>
-            <th>followers</th>
-            <td><%= link_to @user.followers.count, followers_publics_user_path(@user) %></td>
-          </tr>
-        </table>
-        </div>
-        <div class="form-group">
-          <%= link_to "ユーザー情報編集", edit_publics_user_path(@user), class: "btn btn-primary btn-block" %>
-        </div>
+  <% else %>
+    <div class="col-md-8 mt-3">
+      <h3 class="text-center">投稿一覧</h3>
+      <h4 class="text-center mt-5">投稿がありません</h4>
     </div>
+  <% end %>
   </div>
 </div>

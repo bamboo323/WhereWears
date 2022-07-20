@@ -8,6 +8,12 @@ class Shop < ApplicationRecord
 
   has_one_attached :shop_image
 
+  validates :shop_name, presence:true
+  validates :shop_address, presence:true
+  validates :shop_detail, presence:true
+  validates :genre_id, presence:true
+  validates :star, presence:true
+
   enum status: {
     非表示: 0,
     表示: 1,

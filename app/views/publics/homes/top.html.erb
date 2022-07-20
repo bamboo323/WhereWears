@@ -1,3 +1,26 @@
-<h1>Publics::Homes#top</h1>
-<p>Find me in app/views/publics/homes/top.html.erb</p>
-<h1>Top page</h1>
+<div class="container">
+  <div class="row">
+    <div class="col mt-5 text-center">
+      <h1>
+        <span>
+          WhereWearsへようこそ
+        </span>
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-3 text-center">
+      <h2>下記ボタンから登録をしてWhereWearsを始めよう！</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-block btn-outline-dark btn-text-dark mt-5" %>
+  </div>
+  <div class="row">
+    <%= link_to "ログイン", new_user_session_path, class: "btn btn-block btn-outline-dark btn-text-dark mt-5" %>
+  </div>
+  <div class="row">
+    <%= link_to "ゲストログイン", users_guest_sign_in_path, meyhod: :post, class: "btn btn-block btn-outline-dark btn-text-dark mt-5" %>
+  </div>
+</div>

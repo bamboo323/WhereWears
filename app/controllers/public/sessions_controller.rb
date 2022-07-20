@@ -6,13 +6,12 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
-
       #ログイン時に名前を入力させる場合は下記記述が必要
-      #user.last_name = "ゲスト"
-      #user.first_name = "ユーザー"
+      user.last_name = "ゲスト"
+      user.first_name = "ユーザー"
     end
   sign_in user
-  redirect_to root_path
+  redirect_to about_path
   end
   # before_action :configure_sign_in_params, only: [:create]
 

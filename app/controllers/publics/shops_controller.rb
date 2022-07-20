@@ -11,7 +11,7 @@ class Publics::ShopsController < ApplicationController
     # tag_listは配列
     tag_list = params[:shop][:tag_names].split(',')
     @shop.user_id = current_user.id
-    if @shop.save!
+    if @shop.save
       #shopにタグを関連つける
       @shop.save_tags(tag_list)
       redirect_to publics_shops_path
@@ -41,7 +41,7 @@ class Publics::ShopsController < ApplicationController
     if @shop.update(shop_params)
       redirect_to mypage_publics_users_path
     else
-      render "edit"
+      render :edit
     end
   end
 
@@ -49,6 +49,19 @@ class Publics::ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @shop.destroy
     redirect_to mypage_publics_users_path
+  end
+
+  def search
+     @genre = Genre.find(params[:genre_id])
+    #検索ワードをparams[:keyword]で取得
+    if params[:keyword].present?
+      @shops = @genre.shops.where('shop_address LIKE?', "%#{params[:keyword]}%")
+    #検索ワードを取得し、結果表示画面で使用する
+      @keyword = params[:keyword]
+    else
+      @shops = @genre.shops.all
+      @keyword = " "
+    end
   end
 
   private
