@@ -1,0 +1,30 @@
+<div class="row mt-5">
+  <div class="col-md-5 text-center">
+    <%= image_tag user.get_profile_image, class: "rounded-circle", size: "250x250" %>
+  </div>
+  <div class="col-md-7">
+    <table class="table">
+      <tr>
+        <th>名前</th>
+        <td><%= user.last_name + " " + user.first_name %></td>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+        <td><%= user.introduction %></td>
+      </tr>
+      <tr>
+        <th>follows</th>
+        <td><%= link_to user.followings.count, followings_publics_user_path(user) %></td>
+      </tr>
+      <tr>
+        <th>followers</th>
+        <td><%= link_to user.followers.count, followers_publics_user_path(user) %></td>
+      </tr>
+    </table>
+    <% if user == current_user %>
+      <div class="form-group">
+        <%= link_to "ユーザー情報編集", edit_publics_user_path(user), class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -13,7 +13,7 @@ class Publics::UsersController < ApplicationController
   def mypage
     @user = current_user
     @shop = Shop.new
-    @shops = @user.shops
+    @shops = @user.shops.page(params[:page])
   end
 
   def edit
@@ -24,6 +24,9 @@ class Publics::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to mypage_publics_users_path
+      flash[:notice] = "プロフィールの更新に成功しました"
+    else
+      render :edit
     end
   end
 

@@ -1,11 +1,10 @@
-<% if @shop.errors.any? %>
-  <%= @shop.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @shop.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render "publics/users/errors", user: @shop %>
+<div class="text-success text-center">
+  <%= flash[:notice]%>
+</div>
+<div class="text-danger text-center">
+  <%= flash[:alart]%>
+</div>
 
 <div class="container">
   <div class="row">
@@ -15,34 +14,7 @@
   </div>
 
 <!-- User詳細 -->
-  <div class="row mt-5">
-    <div class="col-md-5 text-center">
-      <%= image_tag @user.get_profile_image, size: "250x250" %>
-    </div>
-    <div class="col-md-7">
-      <table class="table">
-        <tr>
-          <th>名前</th>
-          <td><%= @user.last_name + " " + @user.first_name %></td>
-        </tr>
-        <tr>
-          <th>自己紹介</th>
-          <td><%= @user.introduction %></td>
-        </tr>
-        <tr>
-          <th>follows</th>
-          <td><%= link_to @user.followings.count, followings_publics_user_path(@user) %></td>
-        </tr>
-        <tr>
-          <th>followers</th>
-          <td><%= link_to @user.followers.count, followers_publics_user_path(@user) %></td>
-        </tr>
-      </table>
-      <div class="form-group">
-        <%= link_to "ユーザー情報編集", edit_publics_user_path(@user), class: "btn btn-primary btn-block" %>
-      </div>
-    </div>
-  </div>
+  <%= render "publics/users/show", user: @user %>
 
 <!-- 新規投稿機能 -->
   <div class="row">
@@ -55,6 +27,7 @@
       <table class="table mt-3">
         <thead>
           <tr>
+            <th>Shop image</th>
             <th>Shop name</th>
             <th>Genre</th>
             <th>tag</th>
@@ -65,7 +38,8 @@
         <tbody>
           <% @shops.each do |shops| %>
           <tr>
-            <td><%= shops.shop_name %></td>
+            <td><%= image_tag shops.get_shop_image, size: "100x100" %></td>
+            <td><%= link_to shops.shop_name, publics_shop_path(shops) %></td>
             <td><%= shops.genre.name %></td>
             <td>
               <% shops.tags.each do |tag| %>
@@ -78,6 +52,9 @@
           <% end %>
         </tbody>
       </table>
+      <div>
+        <%= paginate @shops %>
+      </div>
     </div>
   <% else %>
     <div class="col-md-8 mt-3">
