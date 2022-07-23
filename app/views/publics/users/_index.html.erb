@@ -10,14 +10,11 @@
     <tbody>
       <% users.each do |user| %>
         <tr>
-          <td><%= image_tag user.get_profile_image, size: "100x100" %></td>
-          <td><%= user.last_name + " " + user.first_name %></td>
+          <td class="text-center"><%= image_tag user.get_profile_image, size: "100x100" %></td>
+          <td class="text-center"><%= link_to user.last_name + " " + user.first_name, publics_user_path(user) %></td>
           <td><%= user.introduction %></td>
-          <td><%= link_to user.followings.count, followings_publics_user_path(user) %>フォロー<%= link_to user.followers.count, followers_publics_user_path(user) %>フォロワー</td>
-          <td><%= render "publics/relationships/btn", user: user %></td>
-          <% if user != current_user %>
-            <td><%= link_to "Show", publics_user_path(user.id), class: "btn btn-secondary" %></td>
-          <% end %>
+          <td class="text-center"><%= link_to user.followings.count, followings_publics_user_path(user) %>フォロー<%= link_to user.followers.count, followers_publics_user_path(user) %>フォロワー</td>
+          <td class= "text-center"><%= render "publics/relationships/btn", user: user %></td>
         </tr>
       <% end %>
     </tbody>

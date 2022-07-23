@@ -15,6 +15,11 @@ class Publics::ShopsController < ApplicationController
       #shopにタグを関連つける
       @shop.save_tags(tag_list)
       redirect_to publics_shops_path
+       flash[:notice] = "投稿に成功しました！"
+    else
+      @user = current_user
+      @shops = @user.shops
+      render '/publics/users/mypage'
     end
   end
 
@@ -40,6 +45,7 @@ class Publics::ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     if @shop.update(shop_params)
       redirect_to mypage_publics_users_path
+      flash[:notice] = "ショップの更新に成功しました"
     else
       render :edit
     end
@@ -49,6 +55,7 @@ class Publics::ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @shop.destroy
     redirect_to mypage_publics_users_path
+    flash[:alart] = "ショップを削除しました"
   end
 
   def search

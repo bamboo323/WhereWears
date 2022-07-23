@@ -6,9 +6,12 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col">
-      <%= image_tag @shop.get_shop_image, size: "300x300" %>
+    <div class="col text-center">
+      <%= image_tag @shop.get_shop_image, size: "600x300" %>
     </div>
+  </div>
+
+  <div class="row mt-3">
     <div class="col">
       <table>
         <tr>
@@ -36,7 +39,7 @@
           <td><%= @shop.shop_detail %></td>
         </tr>
       </table>
-      <div>
+      <div class="col">
         <%= render "publics/shop_comments/index", shop: @shop, shop_comment: @shop_comment %>
       </div>
     </div>

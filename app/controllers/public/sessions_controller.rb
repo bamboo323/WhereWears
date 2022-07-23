@@ -11,7 +11,7 @@ class Public::SessionsController < Devise::SessionsController
       user.first_name = "ユーザー"
     end
   sign_in user
-  redirect_to about_path
+  redirect_to mypage_publics_users_path
   end
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -39,7 +39,7 @@ class Public::SessionsController < Devise::SessionsController
   protected
 
   def after_sign_in_path_for(resource)
-    about_path
+    mypage_publics_users_path
   end
 
   def after_sign_out_path_for(resource)

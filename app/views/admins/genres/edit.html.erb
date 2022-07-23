@@ -4,22 +4,22 @@
       <h1>ジャンル編集</h1>
     </div>
   </div>
-</div>
 
   <div class="row text-center mt-4">
     <div class="col">
       <%= form_with model: @genre, url: admins_genre_path, method: :patch do |f| %>
-        <%= f.label :ジャンル %>
-        <%= f.text_field :name %>
-        <%= f.submit "変更を保存", class: "btn btn-success" %>
+        <div class="w-75 mx-auto">
+          <table class="table table-bordered border-primary text-center mt-3">
+            <tr>
+              <th scope="row"><%= f.label :ジャンル %></th>
+              <td><%= f.text_field :name %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col text-center">
+          <%= f.submit "変更を保存する" ,class: "btn btn-success" %>
+        </div>
       <% end %>
     </div>
   </div>
-
-
-
-
-
-
-  </div>
-
+</div>

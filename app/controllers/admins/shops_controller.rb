@@ -15,8 +15,8 @@ class Admins::ShopsController < ApplicationController
   def update
    @shop = Shop.find(params[:id])
     if @shop.update(shop_params)
-      #byebug
       redirect_to admins_shop_path(@shop)
+      flash[:notice] = "ショップの更新に成功しました"
     else
       render "edit"
     end
