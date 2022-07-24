@@ -18,7 +18,7 @@ class Publics::ShopsController < ApplicationController
        flash[:notice] = "投稿に成功しました！"
     else
       @user = current_user
-      @shops = @user.shops
+      @shops = @user.shops.page(params[:page])
       render '/publics/users/mypage'
     end
   end
