@@ -70,7 +70,7 @@
            <% @shop.shop_comments.each do |shop_comment| %>
              <tr>
                <td>
-                 <%= link_to publics_user_path(shop_comment.user) do %>
+                 <%= link_to admins_user_path(shop_comment.user) do %>
                    <%= image_tag shop_comment.user.get_profile_image, size: "100x100" %>
                    <%= shop_comment.user.last_name + " " + shop_comment.user.first_name %>
                  <% end %>

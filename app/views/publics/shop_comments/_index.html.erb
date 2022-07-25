@@ -1,28 +1,49 @@
 
+<!-- コメント一覧 -->
+<div class="row">
+  <div class="col mt-3 text-center">
+    <h3>コメント一覧</h3>
+  </div>
+</div>
+
+<div class="mx-auto">
+  <% if shop.shop_comments.present? %>
+    <table class="table table-bordered text-center mt-3">
+      <thead>
+        <tr>
+          <th class="text-center table-dark" width="30%">ユーザー</th>
+          <th class="text-center table-dark">コメント</th>
+          <th class="table-dark" width="20%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% shop.shop_comments.each do |shop_comment| %>
+          <tr>
+            <td>
+              <%= link_to publics_user_path(shop_comment.user) do %>
+                <%= image_tag shop_comment.user.get_profile_image, size: "100x100" %>
+                <%= shop_comment.user.last_name + " " + shop_comment.user.first_name %>
+              <% end %>
+            </td>
+            <td>
+              <%= shop_comment.comment %>
+            </td>
+            <td>
+              <% if shop_comment.user == current_user %>
+                <%= link_to "削除する", publics_shop_shop_comment_path(shop, shop_comment), method: :delete, data: { confirm: "本当に削除しますか?"}, class: "btn btn-danger" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h2 class="text-center mt-3 mb-3">コメントがありません</h2>
+  <% end %>
+</div>
+
 <!-- 投稿フォーム -->
 <%= form_with model: shop_comment, url: publics_shop_shop_comments_path(shop), method: :post, local: true do |f| %>
-  <%= f.text_area :comment, placeholder: "ここにコメント", class: "w-50" %>
-  <%= f.submit "投稿する", class: "btn btn-success" %>
+  <%= f.text_area :comment, placeholder: "ここにコメント", size: "100x2" %>
+  <%= f.submit "投稿する", class: "btn btn-success mb-3" %>
 <% end %>
-
-<!-- 投稿一覧 -->
-<table>
-  <% shop.shop_comments.each do |shop_comment| %>
-    <tr>
-      <td>
-        <%= link_to publics_user_path(shop_comment.user) do %>
-          <%= image_tag shop_comment.user.get_profile_image, size: "100x100" %>
-          <%= shop_comment.user.last_name + " " + shop_comment.user.first_name %>
-        <% end %>
-      </td>
-      <td>
-        <%= shop_comment.comment %>
-      </td>
-      <td>
-        <% if shop_comment.user == current_user %>
-          <%= link_to "削除する", publics_shop_shop_comment_path(shop, shop_comment), method: :delete, data: { confirm: "本当に削除しますか?"}, class: "btn btn-danger" %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>

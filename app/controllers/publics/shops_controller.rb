@@ -8,14 +8,14 @@ class Publics::ShopsController < ApplicationController
   def create
     @shop = Shop.new(shop_params)
     #送られてくるタグの値を取得。split(',')で複数のタグ付けを区切る
-    # tag_listは配列
-    tag_list = params[:shop][:tag_names].split(',')
+    #tag_listは配列
+    #uniqをつけることで同じタグがつけられても１つにする
+    tag_list = params[:shop][:tag_names].split(',').uniq
     @shop.user_id = current_user.id
     if @shop.save
       #shopにタグを関連つける
       @shop.save_tags(tag_list)
-      redirect_to publics_shops_path
-       flash[:notice] = "投稿に成功しました！"
+      redirect_to publics_shops_path, notice: "投稿に成功しました！"
     else
       @user = current_user
       @shops = @user.shops.page(params[:page])
