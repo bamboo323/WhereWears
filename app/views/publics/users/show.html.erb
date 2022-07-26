@@ -14,34 +14,34 @@
     </div>
   </div>
 
-<% if @shops.present? %>
-  <div class="row mt-3">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Shop image</th>
-          <th>Shop name</th>
-          <th>Shop address</th>
-          <th>Review</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @shops.each do |shops| %>
-        <tr>
-          <td><%= image_tag shops.get_shop_image, size: "100x100" %></td>
-          <td><%= link_to shops.shop_name, publics_shop_path(shops), method: :get %></td>
-          <td><%= shops.shop_address %></td>
-          <td><%= render "publics/shops/review", shops: shops %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
-<% else %>
-  <div class="row mt-3">
-    <div class="col mt-3 text-center">
-      <h3>まだ投稿がありません</h3>
+  <% if @shops.present? %>
+    <div class="row mt-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Shop image</th>
+            <th>Shop name</th>
+            <th>Shop address</th>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @shops.each do |shops| %>
+          <tr>
+            <td class="text-center"><%= image_tag shops.get_shop_image, size: "100x100" %></td>
+            <td><%= link_to shops.shop_name, publics_shop_path(shops), method: :get %></td>
+            <td><%= shops.shop_address %></td>
+            <td><%= render "publics/shops/review", shops: shops %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
-  </div>
-<% end %>
+  <% else %>
+    <div class="row mt-3">
+      <div class="col mt-3 text-center">
+        <h3>まだ投稿がありません</h3>
+      </div>
+    </div>
+  <% end %>
 </div>

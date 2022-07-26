@@ -8,31 +8,34 @@
       <h1>Users</h1>
     </div>
   </div>
-  <table class="table mt-3">
-    <thead>
-      <tr>
-        <th>会員ID</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- each.with_index(1)で会員のIDを1からにする-->
-      <% @users.each.with_index(1) do |user, i| %>
+
+  <div class="w-75 mx-auto">
+    <table class="table mt-3">
+      <thead>
         <tr>
-          <td><%= i %></td>
-          <td><%= link_to user.last_name + " " + user.first_name, admins_user_path(user) %></td>
-          <td><%= user.email %></td>
-          <td>
-            <% if user.is_deleted == false %>
-              <p class="text-success">有効</p>
-            <% else %>
-              <p class="text-danger">退会</p>
-            <% end %>
-          </td>
+          <th width="10%">会員ID</th>
+          <th width="30%">氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <!-- each.with_index(1)で会員のIDを1からにする-->
+        <% @users.each.with_index(1) do |user, i| %>
+          <tr>
+            <td class="text-center"><%= i %></td>
+            <td><%= link_to user.last_name + " " + user.first_name, admins_user_path(user) %></td>
+            <td><%= user.email %></td>
+            <td>
+              <% if user.is_deleted == false %>
+                <p class="text-success">有効</p>
+              <% else %>
+                <p class="text-danger">退会</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

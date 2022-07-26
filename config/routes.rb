@@ -51,7 +51,7 @@ Rails.application.routes.draw do
       patch "/out" => "users#out"
     end
 
-    resources :shops, only: [:index, :show, :edit, :update] do
+    resources :shops, only: [:index, :show, :edit, :update, :destroy] do
       resources :shop_comments, only: [:destroy]
     end
     resources :genres, only: [:index, :edit, :create, :update]

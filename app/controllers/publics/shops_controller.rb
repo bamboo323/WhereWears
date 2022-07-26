@@ -44,8 +44,7 @@ class Publics::ShopsController < ApplicationController
   def update
     @shop = Shop.find(params[:id])
     if @shop.update(shop_params)
-      redirect_to mypage_publics_users_path
-      flash[:notice] = "ショップの更新に成功しました"
+      redirect_to mypage_publics_users_path, notice: "ショップの更新に成功しました"
     else
       render :edit
     end

@@ -3,5 +3,6 @@ class Admins::ShopCommentsController < ApplicationController
   def destroy
     ShopComment.find_by(id: params[:id], shop_id: params[:shop_id]).destroy
     redirect_to request.referer
+    flash[:alart] = "コメントを削除しました"
   end
 end
