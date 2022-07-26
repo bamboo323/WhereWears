@@ -1,29 +1,29 @@
   <table class="table mt-5">
-    <thead>
+    <thead class="text-center">
       <tr>
-        <th>image</th>
-        <th>name</th>
-        <th>address</th>
-        <th>genre</th>
-        <th>review</th>
-        <th>tag</th>
-        <th>comments</th>
+        <th width="10%">image</th>
+        <th width="15%">shopname</th>
+        <th width="20%">address</th>
+        <th width="10%">genre</th>
+        <th width="20%">review</th>
+        <th width="20%">tag</th>
+        <th width="5%">comments</th>
       </tr>
     </thead>
     <tbody>
       <% shops.each do |shops| %>
         <tr>
-          <td><%= image_tag shops.get_shop_image, size: "100x100" %></td>
-          <td><%= link_to shops.shop_name, publics_shop_path(shops), method: :get %></td>
+          <td class="text-center"><%= image_tag shops.get_shop_image, size: "100x100" %></td>
+          <td class="text-center"><%= link_to shops.shop_name, publics_shop_path(shops), method: :get %></td>
           <td><%= shops.shop_address %></td>
-          <td><%= shops.genre.name %></td>
-          <td><%= render "publics/shops/review", shops: shops %></td>
-          <td>
+          <td class="text-center"><%= shops.genre.name %></td>
+          <td class="text-center"><%= render "publics/shops/review", shops: shops %></td>
+          <td class="text-center">
             <% shops.tags.each do |tag| %>
               <%= tag.tag_name %>,
             <% end %>
           </td>
-          <td><%= shops.shop_comments.count %></td>
+          <td class="text-center"><%= shops.shop_comments.count %></td>
         </tr>
       <% end %>
     </tbody>

@@ -5,12 +5,7 @@
     </div>
   </div>
   <!-- ユーザー情報 -->
-  <%= render "publics/users/show", user: @user %>
-  <div class="row">
-    <div class="col text-right">
-      <%= link_to "ユーザー情報を編集する", edit_admins_user_path, class: "btn btn-success mt-2" %>
-    </div>
-  </div>
+  <%= render "admins/users/show", user: @user %>
 
   <!-- 投稿一覧 -->
   <% if @shops.present? %>

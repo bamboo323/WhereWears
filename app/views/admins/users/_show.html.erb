@@ -5,7 +5,7 @@
   <div class="col-md-7">
     <table class="table">
       <tr>
-        <th width="25%">名前</th>
+        <th>名前</th>
         <td><%= user.last_name + " " + user.first_name %></td>
       </tr>
       <tr>
@@ -14,17 +14,15 @@
       </tr>
       <tr>
         <th>follows</th>
-        <td><%= link_to user.followings.count, followings_publics_user_path(user) %></td>
+        <td><%= user.followings.count %></td>
       </tr>
       <tr>
         <th>followers</th>
-        <td><%= link_to user.followers.count, followers_publics_user_path(user) %></td>
+        <td><%= user.followers.count %></td>
       </tr>
     </table>
-    <% if user == current_user %>
-      <div class="form-group">
-        <%= link_to "ユーザー情報編集", edit_publics_user_path(user), class: "btn btn-primary btn-block" %>
-      </div>
-    <% end %>
+    <div class="form-group">
+      <%= link_to "ユーザー情報編集", edit_admins_user_path(user), class: "btn btn-primary btn-block" %>
+    </div>
   </div>
 </div>
